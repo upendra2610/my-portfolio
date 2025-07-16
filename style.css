@@ -1,0 +1,93 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  --primary-purple: #8b5cf6;
+  --primary-cyan: #06b6d4;
+  --text-secondary: #94a3b8;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+
+}
+
+
+nav{
+    position: fixed;
+    background: rgba(5, 3, 20, 0.9);
+    width: 100%;
+    padding: 1rem 0;
+
+}
+
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 0 2rem;
+}
+
+
+.logo{
+    margin-left: 20px;
+    height: 100%;
+    padding-top: 12px;
+    font-weight: 700;
+    font-size: 1.5rem;
+    background: linear-gradient(135deg,
+     var(--primary-purple),
+     var(--primary-cyan));
+    background-clip: text; /* this shapes background color in text */
+    color: transparent; /* this makes color of original text transparent, so that we can see gradiant color*/
+
+}
+.nav-links{
+
+    margin-right: 10px;
+
+
+}
+
+
+.nav-links>ul {
+    list-style: none;
+    display: flex;   
+    gap: 40px;
+   
+}
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    position: relative; 
+    /* this is needed for psedo element to be positioned relative to this link */
+}
+
+.nav-links a:hover {
+    color: var(--primary-purple);
+
+}
+
+/* adding psedo element like adding small invisible box after each link */
+.nav-links a::after{
+    /* content makes psedo element exist even though it is empty */
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(90deg,
+    var(--primary-purple),
+    var(--primary-cyan));
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after{
+    width: 100%;
+}

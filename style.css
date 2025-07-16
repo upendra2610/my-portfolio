@@ -1,13 +1,13 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 :root {
-  --primary-purple: #8b5cf6;
-  --primary-cyan: #06b6d4;
-  --text-secondary: #94a3b8;
+    --primary-purple: #8b5cf6;
+    --primary-cyan: #06b6d4;
+    --text-secondary: #94a3b8;
 }
 
 body {
@@ -16,9 +16,11 @@ body {
 }
 
 
-nav{
+nav {
     position: fixed;
     background: rgba(5, 3, 20, 0.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
     width: 100%;
     padding: 1rem 0;
 
@@ -34,20 +36,23 @@ nav{
 }
 
 
-.logo{
+.logo {
     margin-left: 20px;
     height: 100%;
     padding-top: 12px;
     font-weight: 700;
     font-size: 1.5rem;
     background: linear-gradient(135deg,
-     var(--primary-purple),
-     var(--primary-cyan));
-    background-clip: text; /* this shapes background color in text */
-    color: transparent; /* this makes color of original text transparent, so that we can see gradiant color*/
+            var(--primary-purple),
+            var(--primary-cyan));
+    background-clip: text;
+    /* this shapes background color in text */
+    color: transparent;
+    /* this makes color of original text transparent, so that we can see gradiant color*/
 
 }
-.nav-links{
+
+.nav-links {
 
     margin-right: 10px;
 
@@ -57,14 +62,15 @@ nav{
 
 .nav-links>ul {
     list-style: none;
-    display: flex;   
+    display: flex;
     gap: 40px;
-   
+
 }
+
 .nav-links a {
     color: var(--text-secondary);
     text-decoration: none;
-    position: relative; 
+    position: relative;
     /* this is needed for psedo element to be positioned relative to this link */
 }
 
@@ -74,7 +80,7 @@ nav{
 }
 
 /* adding psedo element like adding small invisible box after each link */
-.nav-links a::after{
+.nav-links a::after {
     /* content makes psedo element exist even though it is empty */
     content: "";
     position: absolute;
@@ -83,11 +89,57 @@ nav{
     bottom: -5px;
     left: 0;
     background: linear-gradient(90deg,
-    var(--primary-purple),
-    var(--primary-cyan));
+            var(--primary-purple),
+            var(--primary-cyan));
     transition: width 0.3s ease;
 }
 
-.nav-links a:hover::after{
+.nav-links a:hover::after {
     width: 100%;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    justify-content: space-between;
+    height: 2.5rem;
+    width: 2.5rem;
+    cursor: pointer;
+}
+
+.bar-top,
+.bar-middle,
+.bar-bottom {
+    background-color: var(--primary-cyan);
+    height: 4px;
+    border-radius: 50px;
+    margin: 3px 0;
+    transform-origin: left;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active .bar-top {
+    transform: rotate(45deg)
+}
+
+.hamburger.active .bar-middle {
+    transform: translateX(1rem);
+    opacity: 0;
+}
+
+.hamburger.active .bar-bottom {
+    transform: rotate(-45deg);
+}
+
+/* making responsive navbar */
+@media (max-width: 750px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
 }

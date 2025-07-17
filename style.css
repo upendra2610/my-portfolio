@@ -8,6 +8,9 @@
     --primary-purple: #8b5cf6;
     --primary-cyan: #06b6d4;
     --text-secondary: #94a3b8;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --backgrounf-menu: rgba(5, 3, 20, 0.9);
+
 }
 
 body {
@@ -18,11 +21,12 @@ body {
 
 nav {
     position: fixed;
-    background: rgba(5, 3, 20, 0.9);
+    background: var(--backgrounf-menu);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--glass-border);
     width: 100%;
     padding: 1rem 0;
+    z-index: 1000;
 
 }
 
@@ -37,7 +41,7 @@ nav {
 
 
 .logo {
-    margin-left: 20px;
+    margin-left: 0;
     height: 100%;
     padding-top: 12px;
     font-weight: 700;
@@ -54,7 +58,7 @@ nav {
 
 .nav-links {
 
-    margin-right: 10px;
+    margin-right: 100px;
 
 
 }
@@ -70,6 +74,9 @@ nav {
 .nav-links a {
     color: var(--text-secondary);
     text-decoration: none;
+    font-weight: 600;
+    /* Increased font weight for menu items */
+    font-size: 17px;
     position: relative;
     /* this is needed for psedo element to be positioned relative to this link */
 }
@@ -85,7 +92,7 @@ nav {
     content: "";
     position: absolute;
     width: 0;
-    height: 2px;
+    height: 3px;
     bottom: -5px;
     left: 0;
     background: linear-gradient(90deg,
@@ -101,10 +108,9 @@ nav {
 .hamburger {
     display: none;
     flex-direction: column;
-    /* flex-wrap: wrap; */
     justify-content: space-between;
-    height: 2.5rem;
-    width: 2.5rem;
+    height: 1.5rem;
+    width: 1.5rem;
     cursor: pointer;
 }
 
@@ -133,13 +139,50 @@ nav {
 }
 
 /* making responsive navbar */
-@media (max-width: 750px) {
+@media (max-width: 940px) {
     .nav-links {
-        display: none;
+        position: fixed;
+        top: 82px;
+        left: 100%;
+        width: 50vh;
+        height: calc(100vh - 82px);
+        background-color: var(--backgrounf-menu);
+        transition: all 0.7s ease;
+        border-top: 3px solid var(--glass-border);
+        backdrop-filter: blur(20px);
+        overflow-y: auto; /* to make it scrollable */
+        z-index: 1000;
+    }
+
+    .nav-links>ul {
+        flex-direction: column;
+        padding: 2rem;
+        min-height: 100%;
+    }
+
+    .nav-links>ul li {
+        margin: 20px 0;
+        text-align: left;
+        border-bottom: 2px solid var(--glass-border);
+        padding: 5px 0;
+    }
+
+    .nav-links.active {
+        left: 50%;
+        width: 50vw; /*viewport width*/
     }
 
     .hamburger {
         display: flex;
     }
 
+}
+/* making responsive navbar for smaller screens like jioPhones */
+@media (max-width: 259px) {
+    .nav-container {
+        height: 90px;
+    }
+    .nav-links {
+        top: 122px;
+    }
 }

@@ -35,14 +35,18 @@
 </html>
 <script>
     let hamburger = document.querySelector('.hamburger');
+    let navLinks = document.querySelector('.nav-links');
     let isClicked = false;
     hamburger.addEventListener('click', function(e)
     {
         if(isClicked){
             hamburger.classList.remove('active')
+            navLinks.classList.remove('active');
+
         }
         else{
             hamburger.classList.add('active');
+            navLinks.classList.add('active');
         }
         isClicked = !isClicked;
     });

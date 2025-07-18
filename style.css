@@ -9,19 +9,30 @@
     --primary-cyan: #06b6d4;
     --text-secondary: #94a3b8;
     --glass-border: rgba(255, 255, 255, 0.1);
-    --backgrounf-menu: rgba(5, 3, 20, 0.9);
+    --background-menu: rgba(5, 3, 20, 0.9);
+    --text-primary: #e2e8f0;
+    --dark-bg: #050314;
+    --mid-bg: #0f0a2e;
+    --light-bg: #1a1441;
 
 }
 
 body {
     font-family: "Inter", sans-serif;
+    min-height: 100vh;
+    color: var(--text-primary);
+    background: radial-gradient(var(--light-bg) 0%,
+            var(--mid-bg) 50%,
+            var(--dark-bg) 100%);
+    overflow-x: hidden; /* to prevent horizontal scroll */
+    position: relative; /* to position child elements absolute , then parent need to be relative  */
 
 }
 
 
 nav {
     position: fixed;
-    background: var(--backgrounf-menu);
+    background: var(--background-menu);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--glass-border);
     width: 100%;
@@ -146,11 +157,12 @@ nav {
         left: 100%;
         width: 50vh;
         height: calc(100vh - 82px);
-        background-color: var(--backgrounf-menu);
+        background-color: var(--background-menu);
         transition: all 0.7s ease;
         border-top: 3px solid var(--glass-border);
         backdrop-filter: blur(20px);
-        overflow-y: auto; /* to make it scrollable */
+        overflow-y: auto;
+        /* to make it scrollable */
         z-index: 1000;
     }
 
@@ -169,7 +181,8 @@ nav {
 
     .nav-links.active {
         left: 50%;
-        width: 50vw; /*viewport width*/
+        width: 50vw;
+        /*viewport width*/
     }
 
     .hamburger {
@@ -177,11 +190,13 @@ nav {
     }
 
 }
+
 /* making responsive navbar for smaller screens like jioPhones */
 @media (max-width: 259px) {
     .nav-container {
         height: 90px;
     }
+
     .nav-links {
         top: 122px;
     }
